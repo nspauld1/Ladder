@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class Assets {
     public static Texture play, settings, high_score, about, back, title;
+    public static Texture ladder;
 
     public static void load(){
         play = new Texture("play.png");
@@ -15,5 +16,7 @@ public class Assets {
         about = new Texture("about.png");
         title = new Texture("title.png");
         back = new Texture("back.png");
+
+        ladder = new Texture("ladder.png");
     }
 }
