@@ -19,7 +19,7 @@ public class MenuScreen extends LadderScreen {
     Rectangle play_bounds, settings_bounds, high_score_bounds, about_bounds;
 
     private final float PLAY_WIDTH = 100, SETTINGS_WIDTH = 200, HIGH_SCORE_WIDTH = 250,
-                        ABOUT_WIDTH = 150;
+                        ABOUT_WIDTH = 150, TITLE_WIDTH = 600;
     private final float WIDTH = 640, HEIGHT = 900;
 
     public MenuScreen(Main game){
@@ -45,6 +45,7 @@ public class MenuScreen extends LadderScreen {
         gui_cam.update();
 
         game.batcher.begin();
+        game.batcher.draw(Assets.title, (WIDTH / 2) - (TITLE_WIDTH / 2), HEIGHT - 150);
         game.batcher.draw(Assets.play,(WIDTH / 2) - (PLAY_WIDTH / 2),HEIGHT - 200);
         game.batcher.draw(Assets.settings,(WIDTH / 2) - (SETTINGS_WIDTH / 2), HEIGHT - 300);
         game.batcher.draw(Assets.high_score,(WIDTH / 2) - (HIGH_SCORE_WIDTH / 2),HEIGHT - 400);
