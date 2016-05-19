@@ -9,8 +9,8 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Ladder";
 		config.useGL30 = false;
-		config.width = 1080;
-		config.height = 640;
+		config.width = 640;
+		config.height = 900;
 		new LwjglApplication(new Main(), config);
 	}
 }

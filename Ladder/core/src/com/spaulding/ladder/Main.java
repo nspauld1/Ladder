@@ -1,11 +1,20 @@
 package com.spaulding.ladder;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.spaulding.ladder.Screens.MenuScreen;
 
 public class Main extends Game {
+	public SpriteBatch batcher;
 
 	@Override
 	public void create() {
-		System.out.print("Hello World Test");
+		batcher = new SpriteBatch();
+		setScreen(new MenuScreen(this));
+	}
+	
+	@Override
+	public void render(){
+		super.render();
 	}
 }
