@@ -50,6 +50,7 @@ public class AboutScreen extends LadderScreen {
         Gdx.gl.glClearColor(1,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         gui_cam.update();
+        game.batcher.setProjectionMatrix(gui_cam.combined);
 
         game.batcher.begin();
         game.batcher.draw(Assets.back, 5, HEIGHT -70);

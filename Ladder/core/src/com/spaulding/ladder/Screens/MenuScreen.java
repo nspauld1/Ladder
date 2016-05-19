@@ -44,6 +44,7 @@ public class MenuScreen extends LadderScreen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         gui_cam.update();
+        game.batcher.setProjectionMatrix(gui_cam.combined);
 
         game.batcher.begin();
         game.batcher.draw(Assets.title, (WIDTH / 2) - (TITLE_WIDTH / 2), HEIGHT - 150);
