@@ -1,0 +1,47 @@
+
+ladder_sheet.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ladder_large
+  rotate: false
+  xy: 1, 228
+  size: 45, 270
+  orig: 45, 270
+  offset: 0, 0
+  index: -1
+ladder_large_large
+  rotate: false
+  xy: 1, 1
+  size: 45, 225
+  orig: 45, 225
+  offset: 0, 0
+  index: -1
+ladder_mediam
+  rotate: false
+  xy: 48, 318
+  size: 45, 180
+  orig: 45, 180
+  offset: 0, 0
+  index: -1
+ladder_mediam_mediam
+  rotate: false
+  xy: 48, 181
+  size: 45, 135
+  orig: 45, 135
+  offset: 0, 0
+  index: -1
+ladder_small
+  rotate: false
+  xy: 48, 89
+  size: 45, 90
+  orig: 45, 90
+  offset: 0, 0
+  index: -1
+ladder_small_small
+  rotate: false
+  xy: 48, 42
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
