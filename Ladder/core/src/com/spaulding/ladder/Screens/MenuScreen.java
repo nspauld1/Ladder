@@ -28,10 +28,10 @@ public class MenuScreen extends LadderScreen {
         touchpoint = new Vector3();
         gui_cam = new OrthographicCamera(WIDTH, HEIGHT);
         gui_cam.position.set(WIDTH / 2, HEIGHT / 2, 0);
-        play_bounds = new Rectangle((WIDTH / 2) - (PLAY_WIDTH / 2), HEIGHT - 200, PLAY_WIDTH, 50);
-        settings_bounds = new Rectangle((WIDTH / 2) - (SETTINGS_WIDTH / 2), HEIGHT - 300, SETTINGS_WIDTH, 50);
-        high_score_bounds = new Rectangle((WIDTH / 2) - (HIGH_SCORE_WIDTH / 2), HEIGHT - 400, HIGH_SCORE_WIDTH, 50);
-        about_bounds = new Rectangle((WIDTH / 2) - (ABOUT_WIDTH / 2), HEIGHT - 500, ABOUT_WIDTH, 50);
+        play_bounds = new Rectangle((WIDTH / 2) - (PLAY_WIDTH / 2), HEIGHT - 300, PLAY_WIDTH, 50);
+        settings_bounds = new Rectangle((WIDTH / 2) - (SETTINGS_WIDTH / 2), HEIGHT - 400, SETTINGS_WIDTH, 50);
+        high_score_bounds = new Rectangle((WIDTH / 2) - (HIGH_SCORE_WIDTH / 2), HEIGHT - 500, HIGH_SCORE_WIDTH, 50);
+        about_bounds = new Rectangle((WIDTH / 2) - (ABOUT_WIDTH / 2), HEIGHT - 600, ABOUT_WIDTH, 50);
     }
 
     @Override
