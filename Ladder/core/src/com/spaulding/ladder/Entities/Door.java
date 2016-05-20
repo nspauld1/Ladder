@@ -1,6 +1,7 @@
 package com.spaulding.ladder.Entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.spaulding.ladder.Assets;
 
 /**
  * Created by Nathan Spaulding on 5/19/2016.
@@ -12,7 +13,7 @@ public class Door extends Entity {
     public doorState state;
     public doorContents contents;
 
-    Sprite door = new Sprite();
+    Sprite door;
 
     public Door(doorState state, doorContents contents) {
         super();
@@ -21,8 +22,10 @@ public class Door extends Entity {
 
         switch (state){
             case LOCKED:
+                door = new Sprite(Assets.door_locked);
                 break;
             case UNLOCKED:
+                door = new Sprite(Assets.door_unlocked);
                 break;
             default:
         }

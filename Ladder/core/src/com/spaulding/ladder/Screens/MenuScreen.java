@@ -5,7 +5,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.spaulding.ladder.Assets;
+import com.spaulding.ladder.Entities.Door;
+import com.spaulding.ladder.Entities.Entity;
 import com.spaulding.ladder.Main;
 
 /**
@@ -15,6 +18,7 @@ public class MenuScreen extends LadderScreen {
     Main game;
     Vector3 touchpoint;
     OrthographicCamera gui_cam;
+    public Stage stage;
 
     Rectangle play_bounds, settings_bounds, high_score_bounds, about_bounds;
 
@@ -32,6 +36,13 @@ public class MenuScreen extends LadderScreen {
         settings_bounds = new Rectangle((WIDTH / 2) - (SETTINGS_WIDTH / 2), HEIGHT - 400, SETTINGS_WIDTH, 50);
         high_score_bounds = new Rectangle((WIDTH / 2) - (HIGH_SCORE_WIDTH / 2), HEIGHT - 500, HIGH_SCORE_WIDTH, 50);
         about_bounds = new Rectangle((WIDTH / 2) - (ABOUT_WIDTH / 2), HEIGHT - 600, ABOUT_WIDTH, 50);
+
+        /*
+        Entity door = new Door(Door.doorState.LOCKED, Door.doorContents.KEY);
+        stage = new Stage();
+        door.setPosition(100,100);
+        stage.addActor(door);
+        */
     }
 
     @Override
@@ -53,6 +64,8 @@ public class MenuScreen extends LadderScreen {
         game.batcher.draw(Assets.high_score,(WIDTH / 2) - (HIGH_SCORE_WIDTH / 2),HEIGHT - 500);
         game.batcher.draw(Assets.about,(WIDTH / 2) - (ABOUT_WIDTH / 2), HEIGHT - 600);
         game.batcher.end();
+
+        //stage.draw();
     }
 
     public void update(){
