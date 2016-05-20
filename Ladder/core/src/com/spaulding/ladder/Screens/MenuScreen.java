@@ -1,6 +1,7 @@
 package com.spaulding.ladder.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
@@ -42,25 +43,37 @@ public class MenuScreen extends LadderScreen {
         stage = new Stage();
 
         Entity floor1 = new Floor(Floor.FloorType.GROUND);
+        Entity floor2 = new Floor(Floor.FloorType.GROUND);
         Entity floor3 = new Floor(Floor.FloorType.WOOD);
-        Entity floor4 = new Floor(Floor.FloorType.WOOD);
-        Entity floor5 = new Floor(Floor.FloorType.CONCRETE);
+        Entity floor5 = new Floor(Floor.FloorType.WOOD);
+        Entity floor6 = new Floor(Floor.FloorType.WOOD);
+        Entity floor7 = new Floor(Floor.FloorType.WOOD);
         Entity ladder1 = new Ladder(Ladder.LadderLength.TWO);
         Entity ladder2 = new Ladder(Ladder.LadderLength.FOUR);
+        Entity ladder3 = new Ladder(Ladder.LadderLength.FOUR);
+        Entity door = new Door(Door.DoorState.LOCKED);
 
         floor1.setPosition(0,0);
+        floor2.setPosition(floor1.getWidth() + floor1.getX(),0);
         floor3.setPosition(0,180);
-        floor4.setPosition(floor3.getWidth() + floor3.getX(), 180);
         floor5.setPosition(floor3.getWidth() + floor3.getX(), 360);
+        floor6.setPosition(0, 540);
+        floor7.setPosition(floor6.getWidth(), 540);
         ladder1.setPosition(100,floor1.getHeight());
         ladder2.setPosition(floor3.getWidth() + 100, floor3.getHeight());
+        ladder3.setPosition(0, floor3.getHeight() + floor3.getY());
+        door.setPosition(floor7.getX() + floor7.getWidth() - 165, 540 + floor6.getHeight());
 
         stage.addActor(floor1);
+        stage.addActor(floor2);
         stage.addActor(floor3);
-        stage.addActor(floor4);
         stage.addActor(floor5);
+        stage.addActor(floor6);
+        stage.addActor(floor7);
         stage.addActor(ladder1);
         stage.addActor(ladder2);
+        stage.addActor(ladder3);
+        stage.addActor(door);
 
     }
 
@@ -76,6 +89,8 @@ public class MenuScreen extends LadderScreen {
         gui_cam.update();
         game.batcher.setProjectionMatrix(gui_cam.combined);
 
+        stage.draw();
+
         game.batcher.begin();
         game.batcher.draw(Assets.title, (WIDTH / 2) - (TITLE_WIDTH / 2), HEIGHT - 150);
         game.batcher.draw(Assets.play,(WIDTH / 2) - (PLAY_WIDTH / 2),HEIGHT - 300);
@@ -83,8 +98,6 @@ public class MenuScreen extends LadderScreen {
         game.batcher.draw(Assets.high_score,(WIDTH / 2) - (HIGH_SCORE_WIDTH / 2),HEIGHT - 500);
         game.batcher.draw(Assets.about,(WIDTH / 2) - (ABOUT_WIDTH / 2), HEIGHT - 600);
         game.batcher.end();
-
-        stage.draw();
     }
 
     public void update(){
