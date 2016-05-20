@@ -2,6 +2,7 @@ package com.spaulding.ladder.Entities;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
@@ -16,6 +17,16 @@ public class Entity extends Actor {
 
     public void setEntity(Sprite entity) {
         this.entity = entity;
+    }
+
+    @Override
+    public float getWidth(){
+        return getEntity().getWidth();
+    }
+
+    @Override
+    public float getHeight(){
+        return getEntity().getHeight();
     }
 
     @Override

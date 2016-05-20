@@ -7,7 +7,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.spaulding.ladder.Assets;
-import com.spaulding.ladder.Entities.Door;
+import com.spaulding.ladder.Entities.Floor;
+import com.spaulding.ladder.Entities.Ladder;
+import com.spaulding.ladder.Entities.Room.Door;
 import com.spaulding.ladder.Entities.Entity;
 import com.spaulding.ladder.Main;
 
@@ -37,12 +39,29 @@ public class MenuScreen extends LadderScreen {
         high_score_bounds = new Rectangle((WIDTH / 2) - (HIGH_SCORE_WIDTH / 2), HEIGHT - 500, HIGH_SCORE_WIDTH, 50);
         about_bounds = new Rectangle((WIDTH / 2) - (ABOUT_WIDTH / 2), HEIGHT - 600, ABOUT_WIDTH, 50);
 
-        /*
-        Entity door = new Door(Door.doorState.LOCKED, Door.doorContents.KEY);
         stage = new Stage();
-        door.setPosition(100,100);
-        stage.addActor(door);
-        */
+
+        Entity floor1 = new Floor(Floor.FloorType.GROUND);
+        Entity floor3 = new Floor(Floor.FloorType.WOOD);
+        Entity floor4 = new Floor(Floor.FloorType.WOOD);
+        Entity floor5 = new Floor(Floor.FloorType.CONCRETE);
+        Entity ladder1 = new Ladder(Ladder.LadderLength.TWO);
+        Entity ladder2 = new Ladder(Ladder.LadderLength.FOUR);
+
+        floor1.setPosition(0,0);
+        floor3.setPosition(0,180);
+        floor4.setPosition(floor3.getWidth() + floor3.getX(), 180);
+        floor5.setPosition(floor3.getWidth() + floor3.getX(), 360);
+        ladder1.setPosition(100,floor1.getHeight());
+        ladder2.setPosition(floor3.getWidth() + 100, floor3.getHeight());
+
+        stage.addActor(floor1);
+        stage.addActor(floor3);
+        stage.addActor(floor4);
+        stage.addActor(floor5);
+        stage.addActor(ladder1);
+        stage.addActor(ladder2);
+
     }
 
     @Override
@@ -65,7 +84,7 @@ public class MenuScreen extends LadderScreen {
         game.batcher.draw(Assets.about,(WIDTH / 2) - (ABOUT_WIDTH / 2), HEIGHT - 600);
         game.batcher.end();
 
-        //stage.draw();
+        stage.draw();
     }
 
     public void update(){

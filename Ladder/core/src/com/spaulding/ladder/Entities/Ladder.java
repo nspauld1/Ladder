@@ -7,33 +7,34 @@ import com.spaulding.ladder.Assets;
  * Created by jared on 5/19/2016.
  */
 public class Ladder extends Entity {
-    public enum LadderType {NORMAL, LOCKED}
-    public enum LadderLength {SHORT, MEDIAM, LONG}
+    public enum LadderLength {ONE, TWO, THREE, FOUR, FIVE, SIX}
 
-    public LadderType type;
     public LadderLength length;
 
     Sprite ladder = new Sprite();
 
-    public Ladder(LadderType type, LadderLength length){
+    public Ladder(LadderLength length){
         super();
-        this.type = type;
         this.length = length;
 
-        switch(type){
-            case NORMAL:
-                break;
-            case LOCKED:
-                break;
-            default:
-        }
-
         switch(length){
-            case SHORT:
+            case ONE:
+                ladder = new Sprite(Assets.ladders[0]);
                 break;
-            case MEDIAM:
+            case TWO:
+                ladder = new Sprite(Assets.ladders[1]);
                 break;
-            case LONG:
+            case THREE:
+                ladder = new Sprite(Assets.ladders[2]);
+                break;
+            case FOUR:
+                ladder = new Sprite(Assets.ladders[3]);
+                break;
+            case FIVE:
+                ladder = new Sprite(Assets.ladders[4]);
+                break;
+            case SIX:
+                ladder = new Sprite(Assets.ladders[5]);
                 break;
             default:
         }

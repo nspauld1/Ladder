@@ -1,24 +1,22 @@
-package com.spaulding.ladder.Entities;
+package com.spaulding.ladder.Entities.Room;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.spaulding.ladder.Assets;
+import com.spaulding.ladder.Entities.Entity;
 
 /**
  * Created by Nathan Spaulding on 5/19/2016.
  */
 public class Door extends Entity {
-    public enum doorState {LOCKED, UNLOCKED}
-    public enum doorContents {KEY, GUN, BOMB, SHOES}
+    public enum DoorState {LOCKED, UNLOCKED}
 
-    public doorState state;
-    public doorContents contents;
+    public DoorState state;
 
     Sprite door;
 
-    public Door(doorState state, doorContents contents) {
+    public Door(DoorState state) {
         super();
         this.state = state;
-        this.contents = contents;
 
         switch (state){
             case LOCKED:
@@ -26,18 +24,6 @@ public class Door extends Entity {
                 break;
             case UNLOCKED:
                 door = new Sprite(Assets.door_unlocked);
-                break;
-            default:
-        }
-
-        switch (contents){
-            case KEY:
-                break;
-            case GUN:
-                break;
-            case BOMB:
-                break;
-            case SHOES:
                 break;
             default:
         }
