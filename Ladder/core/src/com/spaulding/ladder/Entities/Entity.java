@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  * Created by jared on 5/19/2016.
  */
 public class Entity extends Actor {
-    Sprite entity;
+    private Sprite entity;
 
     public Sprite getEntity() {
         return entity;
