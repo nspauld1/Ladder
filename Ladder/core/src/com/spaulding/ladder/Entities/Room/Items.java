@@ -1,6 +1,7 @@
 package com.spaulding.ladder.Entities.Room;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.spaulding.ladder.Assets;
 import com.spaulding.ladder.Entities.Entity;
 
 /**
@@ -11,6 +12,7 @@ public class Items extends Entity {
     public DoorContents contents;
 
     Sprite item;
+    public float stateTime;
 
     public Items(DoorContents contents){
         super();
@@ -18,6 +20,7 @@ public class Items extends Entity {
 
         switch(contents){
             case KEY:
+                stateTime = 0;
                 break;
             case GUN:
                 break;
@@ -28,5 +31,9 @@ public class Items extends Entity {
             default:
         }
         super.setEntity(item);
+    }
+
+    public void update(float deltaTime){
+        stateTime += deltaTime;
     }
 }

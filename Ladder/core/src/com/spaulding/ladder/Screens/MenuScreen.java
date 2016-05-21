@@ -4,15 +4,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.spaulding.ladder.Animation;
 import com.spaulding.ladder.Assets;
 import com.spaulding.ladder.Entities.Floor;
 import com.spaulding.ladder.Entities.Ladder;
 import com.spaulding.ladder.Entities.Room.Door;
 import com.spaulding.ladder.Entities.Entity;
+import com.spaulding.ladder.Entities.Room.Items;
 import com.spaulding.ladder.Main;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jared on 5/18/2016.
@@ -28,6 +34,8 @@ public class MenuScreen extends LadderScreen {
     private final float PLAY_WIDTH = 100, SETTINGS_WIDTH = 200, HIGH_SCORE_WIDTH = 250,
                         ABOUT_WIDTH = 150, TITLE_WIDTH = 600;
     private final float WIDTH = 640, HEIGHT = 900;
+
+//    public final ArrayList<Items> keys;
 
     public MenuScreen(Main game){
         super(game);
@@ -75,6 +83,15 @@ public class MenuScreen extends LadderScreen {
         stage.addActor(ladder3);
         stage.addActor(door);
 
+//        keys = new ArrayList<Items>();
+//        Items key;
+//        Items.DoorContents item_type;
+//        item_type = Items.DoorContents.KEY;
+//        key = new Items(item_type);
+//        key.setPosition(0,0);
+//        keys.add(key);
+//        stage.addActor(key);
+
     }
 
     @Override
@@ -97,6 +114,13 @@ public class MenuScreen extends LadderScreen {
         game.batcher.draw(Assets.settings,(WIDTH / 2) - (SETTINGS_WIDTH / 2), HEIGHT - 400);
         game.batcher.draw(Assets.high_score,(WIDTH / 2) - (HIGH_SCORE_WIDTH / 2),HEIGHT - 500);
         game.batcher.draw(Assets.about,(WIDTH / 2) - (ABOUT_WIDTH / 2), HEIGHT - 600);
+
+//        int len = keys.size();
+//        for (int i = 0 ; i < len; i++){
+//            Items key1 = keys.get(i);
+//            TextureRegion keyFrame = Assets.key_anim.getKeyFrame(key1.stateTime, Animation.ANIMATION_LOOPING);
+//            game.batcher.draw(keyFrame,0,0);
+//        }
         game.batcher.end();
     }
 

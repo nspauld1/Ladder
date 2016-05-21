@@ -1,0 +1,68 @@
+
+key_sheet.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+key6
+  rotate: false
+  xy: 1, 162
+  size: 43, 83
+  orig: 43, 83
+  offset: 0, 0
+  index: -1
+key9
+  rotate: false
+  xy: 1, 71
+  size: 36, 89
+  orig: 36, 89
+  offset: 0, 0
+  index: -1
+key1
+  rotate: false
+  xy: 46, 177
+  size: 33, 68
+  orig: 33, 68
+  offset: 0, 0
+  index: -1
+key2
+  rotate: false
+  xy: 1, 1
+  size: 33, 68
+  orig: 33, 68
+  offset: 0, 0
+  index: -1
+key3
+  rotate: false
+  xy: 81, 177
+  size: 33, 68
+  orig: 33, 68
+  offset: 0, 0
+  index: -1
+key4
+  rotate: false
+  xy: 39, 92
+  size: 33, 68
+  orig: 33, 68
+  offset: 0, 0
+  index: -1
+key5
+  rotate: false
+  xy: 74, 107
+  size: 33, 68
+  orig: 33, 68
+  offset: 0, 0
+  index: -1
+key7
+  rotate: false
+  xy: 36, 1
+  size: 33, 68
+  orig: 33, 68
+  offset: 0, 0
+  index: -1
+key8
+  rotate: false
+  xy: 71, 22
+  size: 33, 68
+  orig: 33, 68
+  offset: 0, 0
+  index: -1
