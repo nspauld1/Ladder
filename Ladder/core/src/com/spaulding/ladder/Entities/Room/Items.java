@@ -21,6 +21,7 @@ public class Items extends Entity {
         switch(contents){
             case KEY:
                 stateTime = 0;
+                item = new Sprite(Assets.key_anim.getKeyFrame(stateTime,0));
                 break;
             case GUN:
                 break;

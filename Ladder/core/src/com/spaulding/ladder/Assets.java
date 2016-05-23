@@ -11,7 +11,6 @@ public class Assets {
     public static Texture play, settings, high_score, about, back, title, door_unlocked, door_locked,
                             floor_concrete, floor_wood, floor_ground;
     public static TextureRegion[] ladders = new TextureRegion[6];
-    public static TextureRegion[] keys = new TextureRegion[9];
     public static TextureAtlas ladder_atlas, key_atlas;
 
     public static Animation key_anim;
@@ -39,17 +38,13 @@ public class Assets {
         ladders[4] = new TextureRegion(ladder_atlas.findRegion("ladder_large_large"));
         ladders[5] = new TextureRegion(ladder_atlas.findRegion("ladder_large"));
 
-        keys[0] = new TextureRegion(key_atlas.findRegion("key1"));
-        keys[1] = new TextureRegion(key_atlas.findRegion("key2"));
-        keys[2] = new TextureRegion(key_atlas.findRegion("key3"));
-        keys[3] = new TextureRegion(key_atlas.findRegion("key4"));
-        keys[4] = new TextureRegion(key_atlas.findRegion("key5"));
-        keys[5] = new TextureRegion(key_atlas.findRegion("key6"));
-        keys[6] = new TextureRegion(key_atlas.findRegion("key7"));
-        keys[7] = new TextureRegion(key_atlas.findRegion("key8"));
-        keys[8] = new TextureRegion(key_atlas.findRegion("key9"));
-
         key_anim = new Animation(.2f, new TextureRegion(key_atlas.findRegion("key1")),
-                new TextureRegion(key_atlas.findRegion("key2")));
+                new TextureRegion(key_atlas.findRegion("key2")),
+                new TextureRegion(key_atlas.findRegion("key3")),
+                new TextureRegion(key_atlas.findRegion("key4")),
+                new TextureRegion(key_atlas.findRegion("key5")),
+                new TextureRegion(key_atlas.findRegion("key6")),
+                new TextureRegion(key_atlas.findRegion("key8")),
+                new TextureRegion(key_atlas.findRegion("key9")));
     }
 }

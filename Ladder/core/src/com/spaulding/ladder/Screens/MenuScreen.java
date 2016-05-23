@@ -35,7 +35,9 @@ public class MenuScreen extends LadderScreen {
                         ABOUT_WIDTH = 150, TITLE_WIDTH = 600;
     private final float WIDTH = 640, HEIGHT = 900;
 
-//    public final ArrayList<Items> keys;
+    public final ArrayList<Items> keys;
+
+    Items key;
 
     public MenuScreen(Main game){
         super(game);
@@ -83,14 +85,11 @@ public class MenuScreen extends LadderScreen {
         stage.addActor(ladder3);
         stage.addActor(door);
 
-//        keys = new ArrayList<Items>();
-//        Items key;
-//        Items.DoorContents item_type;
-//        item_type = Items.DoorContents.KEY;
-//        key = new Items(item_type);
-//        key.setPosition(0,0);
-//        keys.add(key);
-//        stage.addActor(key);
+        keys = new ArrayList<Items>();
+        Items.DoorContents item_type;
+        item_type = Items.DoorContents.KEY;
+        key = new Items(item_type);
+        keys.add(key);
 
     }
 
@@ -98,6 +97,7 @@ public class MenuScreen extends LadderScreen {
     public void render(float delta){
         update();
         draw();
+        key.update(delta);
     }
 
     public void draw(){
@@ -115,12 +115,12 @@ public class MenuScreen extends LadderScreen {
         game.batcher.draw(Assets.high_score,(WIDTH / 2) - (HIGH_SCORE_WIDTH / 2),HEIGHT - 500);
         game.batcher.draw(Assets.about,(WIDTH / 2) - (ABOUT_WIDTH / 2), HEIGHT - 600);
 
-//        int len = keys.size();
-//        for (int i = 0 ; i < len; i++){
-//            Items key1 = keys.get(i);
-//            TextureRegion keyFrame = Assets.key_anim.getKeyFrame(key1.stateTime, Animation.ANIMATION_LOOPING);
-//            game.batcher.draw(keyFrame,0,0);
-//        }
+        int len = keys.size();
+        for (int i = 0 ; i < len; i++){
+            Items key1 = keys.get(i);
+            TextureRegion keyFrame = Assets.key_anim.getKeyFrame(key1.stateTime, Animation.ANIMATION_LOOPING);
+            game.batcher.draw(keyFrame,100,100);
+        }
         game.batcher.end();
     }
 
