@@ -3,66 +3,87 @@ key_sheet.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-key6
+0001
   rotate: false
-  xy: 1, 162
-  size: 43, 83
-  orig: 43, 83
+  xy: 1, 305
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1
-key9
+0002
   rotate: false
-  xy: 1, 71
-  size: 36, 89
-  orig: 36, 89
+  xy: 1, 153
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1
-key1
+0003
   rotate: false
-  xy: 46, 177
-  size: 33, 68
-  orig: 33, 68
+  xy: 153, 305
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1
-key2
+0004
   rotate: false
   xy: 1, 1
-  size: 33, 68
-  orig: 33, 68
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1
-key3
+0005
   rotate: false
-  xy: 81, 177
-  size: 33, 68
-  orig: 33, 68
+  xy: 153, 153
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1
-key4
+0006
   rotate: false
-  xy: 39, 92
-  size: 33, 68
-  orig: 33, 68
+  xy: 305, 305
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1
-key5
+0007
   rotate: false
-  xy: 74, 107
-  size: 33, 68
-  orig: 33, 68
+  xy: 153, 1
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1
-key7
+0008
   rotate: false
-  xy: 36, 1
-  size: 33, 68
-  orig: 33, 68
+  xy: 305, 153
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1
-key8
+0009
   rotate: false
-  xy: 71, 22
-  size: 33, 68
-  orig: 33, 68
+  xy: 457, 305
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+0010
+  rotate: false
+  xy: 305, 1
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+0011
+  rotate: false
+  xy: 457, 153
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
+0012
+  rotate: false
+  xy: 609, 305
+  size: 150, 150
+  orig: 150, 150
   offset: 0, 0
   index: -1

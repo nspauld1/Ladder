@@ -1,42 +1,18 @@
 package com.spaulding.ladder.Entities;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g3d.shaders.DefaultShader;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * Created by jared on 5/19/2016.
  */
-public class Entity extends Actor {
-    private Sprite entity;
+public class Entity {
+    public final Rectangle bounds;
+    public final Vector2 position;
 
-    public Sprite getEntity() {
-        return entity;
-    }
+    public Entity(float x, float y, float width, float height) {
 
-    public void setEntity(Sprite entity) {
-        this.entity = entity;
-    }
-
-    @Override
-    public float getWidth(){
-        return getEntity().getWidth();
-    }
-
-    @Override
-    public float getHeight(){
-        return getEntity().getHeight();
-    }
-
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        entity.draw(batch);
-    }
-
-    @Override
-    protected void positionChanged() {
-        entity.setPosition(getX(), getY());
-        super.positionChanged();
+        this.position = new Vector2(x, y);
+        this.bounds = new Rectangle(x - width / 2, y - height / 2, width, height);
     }
 }

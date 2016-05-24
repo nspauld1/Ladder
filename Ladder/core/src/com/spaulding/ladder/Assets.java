@@ -38,13 +38,17 @@ public class Assets {
         ladders[4] = new TextureRegion(ladder_atlas.findRegion("ladder_large_large"));
         ladders[5] = new TextureRegion(ladder_atlas.findRegion("ladder_large"));
 
-        key_anim = new Animation(.2f, new TextureRegion(key_atlas.findRegion("key1")),
-                new TextureRegion(key_atlas.findRegion("key2")),
-                new TextureRegion(key_atlas.findRegion("key3")),
-                new TextureRegion(key_atlas.findRegion("key4")),
-                new TextureRegion(key_atlas.findRegion("key5")),
-                new TextureRegion(key_atlas.findRegion("key6")),
-                new TextureRegion(key_atlas.findRegion("key8")),
-                new TextureRegion(key_atlas.findRegion("key9")));
+        key_anim = new Animation(.1f, new TextureRegion(key_atlas.findRegion("0001")),
+                new TextureRegion(key_atlas.findRegion("0002")),
+                new TextureRegion(key_atlas.findRegion("0003")),
+                new TextureRegion(key_atlas.findRegion("0004")),
+                new TextureRegion(key_atlas.findRegion("0005")),
+                new TextureRegion(key_atlas.findRegion("0006")),
+                new TextureRegion(key_atlas.findRegion("0007")),
+                new TextureRegion(key_atlas.findRegion("0008")),
+                new TextureRegion(key_atlas.findRegion("0009")),
+                new TextureRegion(key_atlas.findRegion("0010")),
+                new TextureRegion(key_atlas.findRegion("0011")),
+                new TextureRegion(key_atlas.findRegion("0012")));
     }
 }
