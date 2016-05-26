@@ -6,7 +6,7 @@ package com.spaulding.ladder.Entities;
 public class Floor extends Entity {
     private static final float FLOOR_WIDTH = 360f, FLOOR_HEIGHT = 45f;
 
-    float state_time;
+    public float state_time;
 
     public Floor(float x, float y){
         super(x,y,FLOOR_WIDTH,FLOOR_HEIGHT);

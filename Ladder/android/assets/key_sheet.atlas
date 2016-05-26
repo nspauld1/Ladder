@@ -5,85 +5,85 @@ filter: Nearest,Nearest
 repeat: none
 0001
   rotate: false
-  xy: 1, 305
-  size: 150, 150
-  orig: 150, 150
+  xy: 1, 155
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0002
   rotate: false
-  xy: 1, 153
-  size: 150, 150
-  orig: 150, 150
+  xy: 1, 78
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0003
   rotate: false
-  xy: 153, 305
-  size: 150, 150
-  orig: 150, 150
+  xy: 28, 155
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0004
   rotate: false
   xy: 1, 1
-  size: 150, 150
-  orig: 150, 150
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0005
   rotate: false
-  xy: 153, 153
-  size: 150, 150
-  orig: 150, 150
+  xy: 28, 78
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0006
   rotate: false
-  xy: 305, 305
-  size: 150, 150
-  orig: 150, 150
+  xy: 55, 155
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0007
   rotate: false
-  xy: 153, 1
-  size: 150, 150
-  orig: 150, 150
+  xy: 28, 1
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0008
   rotate: false
-  xy: 305, 153
-  size: 150, 150
-  orig: 150, 150
+  xy: 55, 78
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0009
   rotate: false
-  xy: 457, 305
-  size: 150, 150
-  orig: 150, 150
+  xy: 82, 155
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0010
   rotate: false
-  xy: 305, 1
-  size: 150, 150
-  orig: 150, 150
+  xy: 55, 1
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0011
   rotate: false
-  xy: 457, 153
-  size: 150, 150
-  orig: 150, 150
+  xy: 82, 78
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
 0012
   rotate: false
-  xy: 609, 305
-  size: 150, 150
-  orig: 150, 150
+  xy: 82, 1
+  size: 25, 75
+  orig: 25, 75
   offset: 0, 0
   index: -1
