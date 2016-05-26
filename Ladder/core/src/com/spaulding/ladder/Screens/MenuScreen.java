@@ -1,26 +1,15 @@
 package com.spaulding.ladder.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.spaulding.ladder.Animation;
 import com.spaulding.ladder.Assets;
-import com.spaulding.ladder.Entities.Floor;
-import com.spaulding.ladder.Entities.Ladder;
-import com.spaulding.ladder.Entities.Room.Door;
-import com.spaulding.ladder.Entities.Entity;
-import com.spaulding.ladder.Entities.Room.Items;
-import com.spaulding.ladder.Entities.Room.Key;
 import com.spaulding.ladder.Levels.MenuScene;
 import com.spaulding.ladder.Main;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jared on 5/18/2016.
@@ -103,7 +92,7 @@ public class MenuScreen extends LadderScreen {
             gui_cam.unproject(touchpoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
             if (play_bounds.contains(touchpoint.x, touchpoint.y)){
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new LevelSelectScreen(game));
                 return;
             }
             if (settings_bounds.contains(touchpoint.x, touchpoint.y)){
