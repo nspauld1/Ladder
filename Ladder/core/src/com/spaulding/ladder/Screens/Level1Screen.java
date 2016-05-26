@@ -1,9 +1,12 @@
 package com.spaulding.ladder.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector3;
 import com.spaulding.ladder.Animation;
 import com.spaulding.ladder.Assets;
 import com.spaulding.ladder.Levels.Level1;
@@ -16,11 +19,16 @@ public class Level1Screen extends LadderScreen{
     Main game;
     Level1 level;
     SpriteBatch batcher;
+    OrthographicCamera camera;
+
+    private final float WIDTH = 640, HEIGHT = 900;
 
     public Level1Screen(Main game){
         super(game);
         level = new Level1();
         batcher = new SpriteBatch();
+        camera = new OrthographicCamera(WIDTH, HEIGHT);
+        camera.position.set(WIDTH / 2, HEIGHT / 2, 0);
     }
 
     public void render(float delta){
@@ -30,7 +38,12 @@ public class Level1Screen extends LadderScreen{
     }
 
     public void update(){
-
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            level.hero.position.x += 5;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+            level.hero.position.x -= 5;
+        }
     }
 
     public void draw(){
@@ -52,6 +65,8 @@ public class Level1Screen extends LadderScreen{
         batcher.draw(Assets.ladders[3], level.ladder3.position.x, level.ladder3.position.y);
 
         batcher.draw(Assets.door_locked, level.door1.position.x, level.door1.position.y);
+
+        batcher.draw(Assets.hero, level.hero.position.x, level.hero.position.y);
 
         for (int i = 0 ; i < level.keys.size(); i++){
             level.key1 = level.keys.get(i);

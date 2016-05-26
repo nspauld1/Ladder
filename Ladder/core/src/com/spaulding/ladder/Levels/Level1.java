@@ -1,6 +1,7 @@
 package com.spaulding.ladder.Levels;
 
 import com.spaulding.ladder.Entities.Floor;
+import com.spaulding.ladder.Entities.Hero;
 import com.spaulding.ladder.Entities.Ladder;
 import com.spaulding.ladder.Entities.Room.Door;
 import com.spaulding.ladder.Entities.Room.Key;
@@ -15,6 +16,7 @@ public class Level1 {
     public Door door1;
     public Ladder ladder1, ladder2, ladder3;
     public Key key1;
+    public Hero hero;
 
     public final ArrayList<Key> keys;
 
@@ -33,6 +35,8 @@ public class Level1 {
         door1 = new Door(floor6.position.x + floor6.bounds.width - 165, 540 + floor5.bounds.height);
 
         key1 = new Key(floor4.position.x + 100, floor3.bounds.height + 360);
+
+        hero = new Hero(320, floor1.bounds.height);
 
         keys = new ArrayList<Key>();
         keys.add(key1);

@@ -4,7 +4,7 @@ package com.spaulding.ladder.Entities;
  * Created by jared on 5/19/2016.
  */
 public class Ladder extends Entity{
-    public static final float LADDER_WIDTH = 45F;
+    public static final float LADDER_WIDTH = 45f;
 
     public float state_time;
 
