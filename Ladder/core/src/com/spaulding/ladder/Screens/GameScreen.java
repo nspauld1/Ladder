@@ -7,10 +7,10 @@ import com.spaulding.ladder.Main;
 /**
  * Created by jared on 5/18/2016.
  */
-public class LevelSelectScreen extends LadderScreen{
+public class GameScreen extends LadderScreen{
     Main game;
 
-    public LevelSelectScreen(Main game){
+    public GameScreen(Main game){
         super(game);
         this.game = game;
     }
@@ -21,7 +21,7 @@ public class LevelSelectScreen extends LadderScreen{
     }
 
     public void update(){
-        game.setScreen(new Level1Screen(game));
+
     }
 
     public void draw(){
