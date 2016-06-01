@@ -8,11 +8,15 @@ import com.spaulding.ladder.Entities.Entity;
 public class Door extends Entity{
     public static final float DOOR_WIDTH = 90, DOOR_HEIGHT = 180;
 
+    public enum DoorType {LOCKED, UNLOCKED, OPEN}
+    public DoorType type;
+
     public float state_time;
 
-    public Door(float x, float y){
+    public Door(float x, float y, DoorType type){
         super(x, y, DOOR_WIDTH, DOOR_HEIGHT);
         state_time = 1;
+        this.type = type;
     }
 
     public void update(float delta){

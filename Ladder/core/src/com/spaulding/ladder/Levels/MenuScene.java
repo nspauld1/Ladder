@@ -19,18 +19,25 @@ public class MenuScene {
     public final ArrayList<Key> keys;
 
     public MenuScene(){
-        floor1 = new Floor(0,0);
-        floor2 = new Floor(floor1.bounds.width + floor1.position.x, 0);
-        floor3 = new Floor(0,180);
-        floor4 = new Floor(floor3.bounds.width + floor3.position.x, 360);
-        floor5 = new Floor(0, 540);
-        floor6 = new Floor(floor5.bounds.width + floor5.position.x, 540);
+        floor1 = new Floor(0,0, Floor.FloorType.GROUND);
+        floor2 = new Floor(floor1.bounds.width + floor1.position.x, 0,
+                Floor.FloorType.GROUND);
+        floor3 = new Floor(0,180, Floor.FloorType.WOOD);
+        floor4 = new Floor(floor3.bounds.width + floor3.position.x, 360,
+                Floor.FloorType.WOOD);
+        floor5 = new Floor(0, 540, Floor.FloorType.WOOD);
+        floor6 = new Floor(floor5.bounds.width + floor5.position.x, 540,
+                Floor.FloorType.WOOD);
 
-        ladder1 = new Ladder(100, floor1.bounds.height, 90);
-        ladder2 = new Ladder(floor3.bounds.width + 100, floor3.bounds.height, 270);
-        ladder3 = new Ladder(0, floor3.bounds.height + floor3.position.y, 270);
+        ladder1 = new Ladder(100, floor1.bounds.height, 180,
+                Ladder.LadderLength.ONE);
+        ladder2 = new Ladder(floor3.bounds.width + 100, floor3.bounds.height, 270,
+                Ladder.LadderLength.FOUR);
+        ladder3 = new Ladder(0, floor3.bounds.height + floor3.position.y, 315,
+                Ladder.LadderLength.FOUR);
 
-        door1 = new Door(floor6.position.x + floor6.bounds.width - 165, 540 + floor5.bounds.height);
+        door1 = new Door(floor6.position.x + floor6.bounds.width - 165, 540 + floor5.bounds.height,
+                Door.DoorType.LOCKED);
 
         key1 = new Key(floor4.position.x + 100, floor3.bounds.height + 360);
 

@@ -21,7 +21,7 @@ public class LevelSelectScreen extends LadderScreen{
     }
 
     public void update(){
-        game.setScreen(new Level1Screen(game));
+        game.setScreen( new GameScreen(game,1));
     }
 
     public void draw(){
