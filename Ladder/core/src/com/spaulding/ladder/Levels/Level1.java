@@ -8,7 +8,7 @@ import com.spaulding.ladder.Entities.Room.Item;
 /**
  * Created by jared on 5/19/2016.
  */
-public class Level1 extends Level implements LevelInterface{
+public class Level1 extends LevelController implements LevelInterface{
 
     public static final Vector2 gravity = new Vector2(0, -12f);
     public static final float WIDTH = 640, HEIGHT = 900;

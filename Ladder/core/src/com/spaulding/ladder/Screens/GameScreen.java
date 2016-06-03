@@ -1,9 +1,9 @@
 package com.spaulding.ladder.Screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.GL20;
-import com.spaulding.ladder.Levels.Level;
+import com.badlogic.gdx.Input.Keys;
+import com.spaulding.ladder.InputController;
+import com.spaulding.ladder.Levels.LevelController;
 import com.spaulding.ladder.Levels.Level1;
 import com.spaulding.ladder.Main;
 
@@ -12,42 +12,76 @@ import com.spaulding.ladder.Main;
  */
 public class GameScreen extends LadderScreen {
     Main game;
-    Level level;
+    LevelController determined_level;
 
-    public GameScreen(Main game, int level_num){
+    public enum GameState {GAME_STATE_PLAY, GAME_STATE_PAUSE, GAME_STATE_WIN, GAME_STATE_LOOSE,
+                            GAME_STATE_QUIT}
+
+    public static GameState state;
+
+    public GameScreen(Main game, int determined_level_num){
         super(game);
         this.game = game;
 
-        switch (level_num){
+        state = GameState.GAME_STATE_PLAY;
+
+        switch (determined_level_num){
             case 1:
-                level = new Level1();
+                determined_level = new Level1();
                 break;
-            default: System.out.print("an error occurred in level");
+            default: System.out.print("an error occurred in controller_level");
         }
     }
 
     public void render(float delta){
         update();
         draw();
-        level.hero.update(delta);
     }
 
     public void draw(){
-        Gdx.gl.glClearColor(0f,0f,0f,0f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        level.draw();
-        level.checkCollisions();
     }
 
     public void update(){
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            level.hero.position.x -= 5;
+        switch (state) {
+            case GAME_STATE_PLAY:
+                determined_level.draw();
+                determined_level.update();
+                determined_level.checkCollisions();
+                inputUpdater();
+                break;
+            case GAME_STATE_PAUSE:
+                break;
+            case GAME_STATE_QUIT:
+                game.setScreen(new MenuScreen(game));
+                break;
+            case GAME_STATE_WIN:
+                game.setScreen(new WinScreen(game));
+                break;
+            case GAME_STATE_LOOSE:
+                break;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            level.hero.position.x += 5;
-        }
-        level.hero.bounds.setPosition(level.hero.position.x,
-                level.hero.position.y);
+    }
+
+    private void inputUpdater(){
+        Gdx.input.setInputProcessor(new InputController() {
+            @Override
+            public boolean keyDown(int keycode){
+                switch (keycode) {
+                    case Keys.ESCAPE:
+                        state = GameState.GAME_STATE_QUIT;
+                        break;
+                    case Keys.A:
+                        break;
+                    case Keys.D:
+                        break;
+                    case Keys.S:
+                        break;
+                    case Keys.W:
+                        break;
+                }
+                return true;
+            }
+        });
     }
 }

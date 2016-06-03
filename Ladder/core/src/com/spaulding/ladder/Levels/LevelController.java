@@ -2,6 +2,7 @@ package com.spaulding.ladder.Levels;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,13 +13,14 @@ import com.spaulding.ladder.Entities.Hero;
 import com.spaulding.ladder.Entities.Ladder;
 import com.spaulding.ladder.Entities.Room.Door;
 import com.spaulding.ladder.Entities.Room.Item;
+import com.spaulding.ladder.Screens.GameScreen;
 
 import java.util.ArrayList;
 
 /**
  * Created by jared on 5/27/2016.
  */
-public class Level{
+public class LevelController {
     SpriteBatch batcher;
     OrthographicCamera camera;
 
@@ -32,7 +34,9 @@ public class Level{
 
     public static Hero hero;
 
-    public Level(float WIDTH, float HEIGHT, int key_amount){
+    float counter = 0;
+
+    public LevelController(float WIDTH, float HEIGHT, int key_amount){
         batcher = new SpriteBatch();
         camera = new OrthographicCamera(WIDTH, HEIGHT);
         camera.position.set(WIDTH / 2, HEIGHT / 2, 0);
@@ -48,7 +52,13 @@ public class Level{
         keys[0] = false;
     }
 
+    public Hero getHero(){
+        return hero;
+    }
+
     public void draw(){
+        Gdx.gl.glClearColor(0f,0f,0f,0f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batcher.begin();
         drawFloors();
         drawLadders();
@@ -141,7 +151,7 @@ public class Level{
     public void checkLadderCollision(){
         for (Ladder ladder : ladders){
             if (hero.bounds.overlaps(ladder.bounds)){
-                hero.state = hero.HERO_STATE_CLIMB;
+                hero.state = Hero.HeroState.HERO_STATE_CLIMB;
                 break;
             }
         }
@@ -150,10 +160,10 @@ public class Level{
     public void checkFloorCollision(){
         for (Floor floor : floors){
             if (!hero.bounds.overlaps(floor.bounds)){
-                hero.state = hero.HERO_STATE_FALL;
+                hero.state = Hero.HeroState.HERO_STATE_FALL;
             }
             else {
-                hero.state = hero.HERO_STATE_COLLIDE;
+                hero.state = Hero.HeroState.HERO_STATE_COLLIDE;
                 break;
             }
         }
@@ -163,13 +173,17 @@ public class Level{
         for (int i = 0; i < doors.size(); i++){
             Door door = doors.get(i);
             if (hero.bounds.overlaps(door.bounds)){
-                hero.state = hero.HERO_STATE_COLLIDE;
-                if (keys[i] == true){
+                hero.state = Hero.HeroState.HERO_STATE_COLLIDE;
+                if (keys[i]){
                     doors.get(i).type = Door.DoorType.UNLOCKED;
                 }
 
                 if (Gdx.input.isKeyPressed(Input.Keys.UP)){
                     doors.get(i).type = Door.DoorType.OPEN;
+                }
+
+                if (doors.get(doors.size() - 1).type == Door.DoorType.OPEN){
+                    endAnimation();
                 }
 
                 break;
@@ -181,11 +195,24 @@ public class Level{
         for (int i = 0; i < items.size(); i++){
             Item item = items.get(i);
             if (hero.bounds.overlaps(item.bounds)){
-                hero.state = hero.HERO_STATE_COLLECT;
+                hero.state = Hero.HeroState.HERO_STATE_COLLECT;
                 items.remove(item);
                 keys[i] = true;
                 break;
             }
+        }
+    }
+
+    public void update(){
+        hero.update(delta);
+    }
+
+    private void endAnimation(){
+        float delta = Gdx.graphics.getDeltaTime();
+        counter += delta * 100;
+        System.out.println(counter);
+        if (counter >= 5){
+            GameScreen.state = GameScreen.GameState.GAME_STATE_WIN;
         }
     }
 }
