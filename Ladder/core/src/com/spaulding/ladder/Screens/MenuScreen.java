@@ -3,12 +3,9 @@ package com.spaulding.ladder.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.spaulding.ladder.Animation;
-import com.spaulding.ladder.Assets;
-import com.spaulding.ladder.Levels.MenuScene;
+import com.spaulding.ladder.Utils.Assets;
 import com.spaulding.ladder.Main;
 
 /**
@@ -25,18 +22,14 @@ public class MenuScreen extends LadderScreen {
                         ABOUT_WIDTH = 150, TITLE_WIDTH = 600;
     private final float WIDTH = 640, HEIGHT = 900;
 
-
-    MenuScene menuScene;
-
     public MenuScreen(Main game){
         super(game);
         this.game = game;
 
-        menuScene = new MenuScene();
-
         touchpoint = new Vector3();
         gui_cam = new OrthographicCamera(WIDTH, HEIGHT);
         gui_cam.position.set(WIDTH / 2, HEIGHT / 2, 0);
+        System.out.print(gui_cam.position);
         play_bounds = new Rectangle((WIDTH / 2) - (PLAY_WIDTH / 2), HEIGHT - 300, PLAY_WIDTH, 50);
         settings_bounds = new Rectangle((WIDTH / 2) - (SETTINGS_WIDTH / 2), HEIGHT - 400, SETTINGS_WIDTH, 50);
         high_score_bounds = new Rectangle((WIDTH / 2) - (HIGH_SCORE_WIDTH / 2), HEIGHT - 500, HIGH_SCORE_WIDTH, 50);
@@ -48,7 +41,6 @@ public class MenuScreen extends LadderScreen {
     public void render(float delta){
         update();
         draw();
-        menuScene.key1.update(delta);
     }
 
     public void draw(){
@@ -59,31 +51,12 @@ public class MenuScreen extends LadderScreen {
 
         game.batcher.begin();
 
-        game.batcher.draw(Assets.floor_ground, menuScene.floor1.position.x, menuScene.floor1.position.y);
-        game.batcher.draw(Assets.floor_ground, menuScene.floor2.position.x, menuScene.floor2.position.y);
-        game.batcher.draw(Assets.floor_wood, menuScene.floor3.position.x, menuScene.floor3.position.y);
-        game.batcher.draw(Assets.floor_wood, menuScene.floor4.position.x, menuScene.floor4.position.y);
-        game.batcher.draw(Assets.floor_wood, menuScene.floor5.position.x, menuScene.floor5.position.y);
-        game.batcher.draw(Assets.floor_wood, menuScene.floor6.position.x, menuScene.floor6.position.y);
-
-
-        game.batcher.draw(Assets.ladders[1], menuScene.ladder1.position.x, menuScene.ladder1.position.y);
-        game.batcher.draw(Assets.ladders[3], menuScene.ladder2.position.x, menuScene.ladder2.position.y);
-        game.batcher.draw(Assets.ladders[3], menuScene.ladder3.position.x, menuScene.ladder3.position.y);
-
-        game.batcher.draw(Assets.door_locked, menuScene.door1.position.x, menuScene.door1.position.y);
-
         game.batcher.draw(Assets.title, (WIDTH / 2) - (TITLE_WIDTH / 2), HEIGHT - 150);
         game.batcher.draw(Assets.play,(WIDTH / 2) - (PLAY_WIDTH / 2),HEIGHT - 300);
         game.batcher.draw(Assets.settings,(WIDTH / 2) - (SETTINGS_WIDTH / 2), HEIGHT - 400);
         game.batcher.draw(Assets.high_score,(WIDTH / 2) - (HIGH_SCORE_WIDTH / 2),HEIGHT - 500);
         game.batcher.draw(Assets.about,(WIDTH / 2) - (ABOUT_WIDTH / 2), HEIGHT - 600);
 
-        for (int i = 0 ; i < menuScene.keys.size(); i++){
-            menuScene.key1 = menuScene.keys.get(i);
-            TextureRegion keyFrame = Assets.key_anim.getKeyFrame(menuScene.key1.state_time, Animation.ANIMATION_LOOPING);
-            game.batcher.draw(keyFrame,menuScene.key1.position.x,menuScene.key1.position.y);
-        }
         game.batcher.end();
     }
 

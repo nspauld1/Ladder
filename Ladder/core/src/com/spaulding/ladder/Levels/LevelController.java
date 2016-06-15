@@ -4,215 +4,233 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.spaulding.ladder.Animation;
-import com.spaulding.ladder.Assets;
-import com.spaulding.ladder.Entities.Floor;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.spaulding.ladder.Entities.Hero;
-import com.spaulding.ladder.Entities.Ladder;
-import com.spaulding.ladder.Entities.Room.Door;
-import com.spaulding.ladder.Entities.Room.Item;
-import com.spaulding.ladder.Screens.GameScreen;
+import com.spaulding.ladder.Handlers.MyContactListener;
 
 import java.util.ArrayList;
 
+import static com.spaulding.ladder.Utils.Constants.PPM;
+
 /**
- * Created by jared on 5/27/2016.
+ * Created by jared on 6/6/2016.
  */
 public class LevelController {
-    SpriteBatch batcher;
-    OrthographicCamera camera;
+    private float level_width, level_height;
 
-    public final ArrayList<Item> items;
-    public final ArrayList<Ladder> ladders;
-    public final ArrayList<Floor> floors;
-    public final ArrayList<Door> doors;
-    public final boolean[] keys;
+    private boolean debug = false;
 
-    private float delta = Gdx.graphics.getDeltaTime();
+    private OrthographicCamera camera;
+
+    Box2DDebugRenderer b2db;
+    public static World world;
 
     public static Hero hero;
 
-    float counter = 0;
+    public static boolean touching_ladder = false;
+    public static boolean touching_ground = false;
 
-    public LevelController(float WIDTH, float HEIGHT, int key_amount){
+    SpriteBatch batcher;
+
+    public ArrayList<Body> enemies, heros, floors, ladders, doors, items;
+
+    public LevelController(float level_width, float level_height){
+        //screen stuff
+        float w = Gdx.graphics.getWidth();
+        float h = Gdx.graphics.getHeight();
+        this.level_width = level_width;
+        this.level_height = level_height;
+
+        //camera stuff
+        camera = new OrthographicCamera(w, h);
+        camera.position.set(w / 2, h / 2, 0);
+        camera.setToOrtho(false, w, h);
+
+        //world stuff
+        world = new World(new Vector2(0, -9.8f), false);
+        world.setContactListener(new MyContactListener());
+        b2db = new Box2DDebugRenderer();
+
+        //initialize arrays
+        enemies = new ArrayList<Body>();
+        heros = new ArrayList<Body>();
+        floors = new ArrayList<Body>();
+        ladders = new ArrayList<Body>();
+        doors = new ArrayList<Body>();
+        items = new ArrayList<Body>();
+
+
+        //create a hero and platform objects with x and y cords
+        hero = new Hero(200, 900);
+
+        //convert the sprite size from meters to pixels
+        hero.sprite.setSize(hero.HERO_WIDTH / PPM,  hero.HERO_HEIGHT / PPM);
+
+        heros.add(hero.body);
+
+        //set sprite data for body
+        hero.body.setUserData(hero.sprite);
+
         batcher = new SpriteBatch();
-        camera = new OrthographicCamera(WIDTH, HEIGHT);
-        camera.position.set(WIDTH / 2, HEIGHT / 2, 0);
-
-        hero = new Hero(320, 45);
-
-        items = new ArrayList<Item>();
-        ladders = new ArrayList<Ladder>();
-        floors = new ArrayList<Floor>();
-        doors = new ArrayList<Door>();
-
-        keys = new boolean[key_amount];
-        keys[0] = false;
     }
 
-    public Hero getHero(){
-        return hero;
-    }
+    public void render(){
+        update(Gdx.graphics.getDeltaTime());
 
-    public void draw(){
-        Gdx.gl.glClearColor(0f,0f,0f,0f);
+        //Render
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        b2db.render(world, camera.combined.scl(PPM));
+        batcher.setProjectionMatrix(camera.combined);
+
         batcher.begin();
+		/*
+		loop that iterates through bodies array
+		then prints the sprite to the screen according to bodies pos and rotation
+		 */
         drawFloors();
         drawLadders();
-        drawDoors();
-        drawItems();
         drawHero();
         batcher.end();
     }
 
-    public void checkCollisions(){
-        checkFloorCollision();
-        checkLadderCollision();
-        checkDoorCollision();
-        checkItemCollision();
-    }
-
-    public void drawFloors(){
-        for (Floor floor : floors){
-            switch (floor.type){
-                case GROUND:
-                    batcher.draw(Assets.floor_ground,floor.position.x,floor.position.y);
-                    break;
-                case WOOD:
-                    batcher.draw(Assets.floor_wood,floor.position.x,floor.position.y);
-                    break;
-                case CONCRETE:
-                    batcher.draw(Assets.floor_concrete,floor.position.x,floor.position.y);
-                    break;
+    private void drawHero(){
+        for (Body body : heros){
+            if (body.getUserData() instanceof Sprite){
+                Sprite sprite = ((Sprite) body.getUserData());
+                sprite.setPosition(body.getPosition().x - sprite.getWidth() / 2, body.getPosition().y - sprite.getHeight() / 2);
+                //sprite.setRotation();
+                sprite.setOriginCenter();
+                sprite.setRotation(body.getAngle() * MathUtils.radiansToDegrees);
+                sprite.draw(batcher);
             }
         }
     }
 
-    public void drawLadders(){
-        for (Ladder ladder : ladders){
-            switch (ladder.length){
-                case ONE:
-                    batcher.draw(Assets.ladders[0], ladder.position.x, ladder.position.y);
-                    break;
-                case TWO:
-                    batcher.draw(Assets.ladders[1], ladder.position.x, ladder.position.y);
-                    break;
-                case THREE:
-                    batcher.draw(Assets.ladders[2], ladder.position.x, ladder.position.y);
-                    break;
-                case FOUR:
-                    batcher.draw(Assets.ladders[3], ladder.position.x, ladder.position.y);
-                    break;
-                case FIVE:
-                    batcher.draw(Assets.ladders[4], ladder.position.x, ladder.position.y);
-                    break;
-                case SIX:
-                    batcher.draw(Assets.ladders[5], ladder.position.x, ladder.position.y);
-                    break;
+    private void drawFloors(){
+        for (Body body : floors){
+            if (body.getUserData() instanceof Sprite){
+                Sprite sprite = ((Sprite) body.getUserData());
+                sprite.setPosition(body.getPosition().x - sprite.getWidth() / 2, body.getPosition().y - sprite.getHeight() / 2);
+                sprite.setRotation(body.getAngle() * MathUtils.radiansToDegrees);
+                sprite.draw(batcher);
             }
         }
     }
 
-    public void drawDoors(){
-        for (Door door : doors){
-            switch (door.type){
-                case LOCKED:
-                    batcher.draw(Assets.door_locked, door.position.x, door.position.y);
-                    break;
-                case UNLOCKED:
-                    batcher.draw(Assets.door_unlocked, door.position.x, door.position.y);
-                    break;
-                case OPEN:
-                    batcher.draw(Assets.door_opened, door.position.x, door.position.y);
+    private void drawLadders(){
+        for (Body body : ladders){
+            if (body.getUserData() instanceof Sprite){
+                Sprite sprite = ((Sprite) body.getUserData());
+                sprite.setPosition(body.getPosition().x - sprite.getWidth() / 2, body.getPosition().y - sprite.getHeight() / 2);
+                sprite.setRotation(body.getAngle() * MathUtils.radiansToDegrees);
+                sprite.draw(batcher);
             }
         }
     }
 
-    public void drawItems(){
-        for (Item item : items){
-            switch (item.type) {
-                case KEY:
-                    item.update(delta);
-                    TextureRegion key_frame = Assets.key_anim.getKeyFrame(item.state_time,
-                            Animation.ANIMATION_LOOPING);
-                    batcher.draw(key_frame, item.position.x, item.position.y);
-                    break;
+    private void drawDoors(){
+
+    }
+
+    private void drawItems(){
+
+    }
+
+    public void update(float delta) {
+        //updates the world
+        world.step(1 / 60f, 6, 2);
+
+        inputUpdate(delta);
+        cameraUpdate(delta);
+    }
+
+    /*
+    input delta time
+    decision making code for hero movement
+     */
+    public void inputUpdate(float delta){
+        int horizontal_force = 0;
+        float vertical_force = 0;
+
+        if (Gdx.input.isKeyPressed(Input.Keys.A)){
+            horizontal_force = -1;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.D)){
+            horizontal_force = 1;
+        }
+        if (touching_ladder == true) {
+            if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+                vertical_force = 1;
+            }
+            if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+                vertical_force = -.5f;
             }
         }
+        hero.body.setLinearVelocity(horizontal_force * 10, world.getGravity().y + vertical_force * 15);
     }
 
-    public void drawHero(){
-        batcher.draw(Assets.hero, hero.position.x, hero.position.y);
-    }
+    /*
+    camera follows the hero within level boundaries
+     */
+    public void cameraUpdate(float delta){
+        // The left boundary of the map (x)
+        float mapLeft = 0;
+        // The right boundary of the map (x + width)
+        float mapRight = 0 + level_width;
+        // The bottom boundary of the map (y)
+        float mapBottom = 0;
+        // The top boundary of the map (y + height)
+        float mapTop = 0 + level_height;
+        // The camera dimensions, halved
+        float cameraHalfWidth = camera.viewportWidth * .5f;
+        float cameraHalfHeight = camera.viewportHeight * .5f;
 
-    public void checkLadderCollision(){
-        for (Ladder ladder : ladders){
-            if (hero.bounds.overlaps(ladder.bounds)){
-                hero.state = Hero.HeroState.HERO_STATE_CLIMB;
-                break;
-            }
+        // Move camera after player as normal
+
+        camera.position.y = hero.body.getPosition().y * PPM;
+        camera.position.x = hero.body.getPosition().x * PPM;
+
+        float cameraLeft = camera.position.x - cameraHalfWidth;
+        float cameraRight = camera.position.x + cameraHalfWidth;
+        float cameraBottom = camera.position.y - cameraHalfHeight;
+        float cameraTop = camera.position.y + cameraHalfHeight;
+
+        // Horizontal axis
+        if(level_width < camera.viewportWidth)
+        {
+            camera.position.x = mapRight / 2;
         }
-    }
-
-    public void checkFloorCollision(){
-        for (Floor floor : floors){
-            if (!hero.bounds.overlaps(floor.bounds)){
-                hero.state = Hero.HeroState.HERO_STATE_FALL;
-            }
-            else {
-                hero.state = Hero.HeroState.HERO_STATE_COLLIDE;
-                break;
-            }
+        else if(cameraLeft <= mapLeft)
+        {
+            camera.position.x = mapLeft + cameraHalfWidth;
         }
-    }
-
-    public void checkDoorCollision(){
-        for (int i = 0; i < doors.size(); i++){
-            Door door = doors.get(i);
-            if (hero.bounds.overlaps(door.bounds)){
-                hero.state = Hero.HeroState.HERO_STATE_COLLIDE;
-                if (keys[i]){
-                    doors.get(i).type = Door.DoorType.UNLOCKED;
-                }
-
-                if (Gdx.input.isKeyPressed(Input.Keys.UP)){
-                    doors.get(i).type = Door.DoorType.OPEN;
-                }
-
-                if (doors.get(doors.size() - 1).type == Door.DoorType.OPEN){
-                    endAnimation();
-                }
-
-                break;
-            }
+        else if(cameraRight >= mapRight)
+        {
+            camera.position.x = mapRight - cameraHalfWidth;
         }
-    }
 
-    public void checkItemCollision(){
-        for (int i = 0; i < items.size(); i++){
-            Item item = items.get(i);
-            if (hero.bounds.overlaps(item.bounds)){
-                hero.state = Hero.HeroState.HERO_STATE_COLLECT;
-                items.remove(item);
-                keys[i] = true;
-                break;
-            }
+        // Vertical axis
+        if(level_height < camera.viewportHeight)
+        {
+            camera.position.y = mapTop / 2;
         }
-    }
-
-    public void update(){
-        hero.update(delta);
-    }
-
-    private void endAnimation(){
-        float delta = Gdx.graphics.getDeltaTime();
-        counter += delta * 100;
-        System.out.println(counter);
-        if (counter >= 5){
-            GameScreen.state = GameScreen.GameState.GAME_STATE_WIN;
+        else if(cameraBottom <= mapBottom)
+        {
+            camera.position.y = mapBottom + cameraHalfHeight;
         }
+        else if(cameraTop >= mapTop)
+        {
+            camera.position.y = mapTop - cameraHalfHeight;
+        }
+
+        camera.update();
     }
 }

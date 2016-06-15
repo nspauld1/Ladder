@@ -10,7 +10,7 @@ public class Main extends Game {
 	@Override
 	public void create() {
 		batcher = new SpriteBatch();
-		Assets.load();
+		com.spaulding.ladder.Utils.Assets.load();
 		setScreen(new MenuScreen(this));
 	}
 	

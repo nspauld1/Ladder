@@ -1,0 +1,68 @@
+
+floor_sheet.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+floor_concrete_long
+  rotate: false
+  xy: 1, 48
+  size: 360, 45
+  orig: 360, 45
+  offset: 0, 0
+  index: -1
+floor_ground_long
+  rotate: false
+  xy: 1, 1
+  size: 360, 45
+  orig: 360, 45
+  offset: 0, 0
+  index: -1
+floor_wood_long
+  rotate: false
+  xy: 363, 48
+  size: 360, 45
+  orig: 360, 45
+  offset: 0, 0
+  index: -1
+floor_concrete_medium
+  rotate: false
+  xy: 363, 1
+  size: 180, 45
+  orig: 180, 45
+  offset: 0, 0
+  index: -1
+floor_ground_medium
+  rotate: false
+  xy: 725, 48
+  size: 180, 45
+  orig: 180, 45
+  offset: 0, 0
+  index: -1
+floor_wood_medium
+  rotate: false
+  xy: 545, 1
+  size: 180, 45
+  orig: 180, 45
+  offset: 0, 0
+  index: -1
+floor_concrete_small
+  rotate: false
+  xy: 907, 48
+  size: 90, 45
+  orig: 90, 45
+  offset: 0, 0
+  index: -1
+floor_ground_small
+  rotate: false
+  xy: 727, 1
+  size: 90, 45
+  orig: 90, 45
+  offset: 0, 0
+  index: -1
+floor_wood_small
+  rotate: false
+  xy: 819, 1
+  size: 90, 45
+  orig: 90, 45
+  offset: 0, 0
+  index: -1

@@ -1,4 +1,4 @@
-package com.spaulding.ladder;
+package com.spaulding.ladder.Handlers;
 
 import com.badlogic.gdx.InputProcessor;
 

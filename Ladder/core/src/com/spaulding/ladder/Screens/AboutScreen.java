@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
-import com.spaulding.ladder.Assets;
+import com.spaulding.ladder.Utils.Assets;
 import com.spaulding.ladder.Main;
 
 /**

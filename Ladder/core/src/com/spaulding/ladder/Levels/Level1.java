@@ -1,27 +1,26 @@
 package com.spaulding.ladder.Levels;
 
-import com.badlogic.gdx.math.Vector2;
 import com.spaulding.ladder.Entities.Floor;
+import com.spaulding.ladder.Entities.FloorType;
 import com.spaulding.ladder.Entities.Ladder;
 import com.spaulding.ladder.Entities.Room.Door;
 import com.spaulding.ladder.Entities.Room.Item;
+
+import static com.spaulding.ladder.Utils.Constants.PPM;
+
 /**
- * Created by jared on 5/19/2016.
+ * Created by jared on 6/6/2016.
  */
 public class Level1 extends LevelController implements LevelInterface{
-
-    public static final Vector2 gravity = new Vector2(0, -12f);
-    public static final float WIDTH = 640, HEIGHT = 900;
+    public static final float WIDTH = 2000, HEIGHT = 900;
 
     public Floor floor1, floor2, floor3, floor4, floor5, floor6;
     public Door door1;
     public Ladder ladder1, ladder2, ladder3;
     public Item item1;
 
-    public static boolean key1_pickup = false;
-
     public Level1(){
-        super(WIDTH,HEIGHT, 1);
+        super(WIDTH, HEIGHT);
         setFloors();
         setLadders();
         setDoors();
@@ -29,56 +28,57 @@ public class Level1 extends LevelController implements LevelInterface{
         addToArray();
     }
 
-    public void setFloors(){
-        floor1 = new Floor(0,0,
-                Floor.FloorType.GROUND);
-        floor2 = new Floor(floor1.bounds.width + floor1.position.x, 0,
-                Floor.FloorType.GROUND);
-        floor3 = new Floor(0,180,
-                Floor.FloorType.WOOD);
-        floor4 = new Floor(floor3.bounds.width + floor3.position.x, 360,
-                Floor.FloorType.WOOD);
-        floor5 = new Floor(0, 540,
-                Floor.FloorType.CONCRETE);
-        floor6 = new Floor(floor5.bounds.width + floor5.position.x, 540,
-                Floor.FloorType.CONCRETE);
+    public void setFloors() {
+        floor1 = new Floor(0,0, 360, FloorType.GROUND_LONG);
+        floor2 = new Floor(360, 0, 360, FloorType.GROUND_LONG);
+        floor3 = new Floor(90,180, 180, FloorType.WOOD_MEDIUM);
+        floor4 = new Floor(450, 360, 90, FloorType.WOOD_SMALL);
+        floor5 = new Floor(270, 540, 360, FloorType.CONCRETE_LONG);
+        floor6 = new Floor(360, 540, 360, FloorType.CONCRETE_LONG);
     }
 
-    public void setLadders(){
-        ladder1 = new Ladder(100, floor1.bounds.height, 180,
+    public void setLadders() {
+        ladder1 = new Ladder(0, 45, 180,
                 Ladder.LadderLength.TWO);
-        ladder2 = new Ladder(floor3.bounds.width + 100, floor3.bounds.height, 360,
+        ladder2 = new Ladder(540, 45, 360,
                 Ladder.LadderLength.FOUR);
-        ladder3 = new Ladder(0, floor3.bounds.height + floor3.position.y, 360,
+        ladder3 = new Ladder(180, 225, 360,
                 Ladder.LadderLength.FOUR);
     }
 
-    public void setDoors(){
-        door1 = new Door(floor6.position.x + floor6.bounds.width - 165, 540 + floor5.bounds.height,
-                Door.DoorType.LOCKED);
+    public void setDoors() {
+
     }
 
-    public void setItems(){
-        item1 = new Item(floor4.position.x + 100, floor3.bounds.height + 360,
-                Item.ItemType.KEY);
+    public void setItems() {
+
     }
 
-    public void addToArray(){
-        items.add(item1);
+    public void addToArray() {
+        //floors array
+        floors.add(floor1.body);
+        floors.add(floor2.body);
+        floors.add(floor3.body);
+        floors.add(floor4.body);
+        floors.add(floor5.body);
+        floors.add(floor6.body);
 
-        floors.add(floor1);
-        floors.add(floor2);
-        floors.add(floor3);
-        floors.add(floor4);
-        floors.add(floor5);
-        floors.add(floor6);
+        //ladders array
+        ladders.add(ladder1.body);
+        ladders.add(ladder2.body);
+        ladders.add(ladder3.body);
 
-        ladders.add(ladder1);
-        ladders.add(ladder2);
-        ladders.add(ladder3);
+        //floors set body texture
+        floor1.body.setUserData(floor1.sprite);
+        floor2.body.setUserData(floor2.sprite);
+        floor3.body.setUserData(floor3.sprite);
+        floor4.body.setUserData(floor4.sprite);
+        floor5.body.setUserData(floor5.sprite);
+        floor6.body.setUserData(floor6.sprite);
 
-        doors.add(door1);
-
-        keys[0] = key1_pickup;
+        //ladders set body texture
+        ladder1.body.setUserData(ladder1.sprite);
+        ladder2.body.setUserData(ladder2.sprite);
+        ladder3. body.setUserData(ladder3.sprite);
     }
 }

@@ -1,17 +1,20 @@
-package com.spaulding.ladder;
+package com.spaulding.ladder.Utils;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.spaulding.ladder.Animation;
 
 /**
  * Created by jared on 5/18/2016.
  */
 public class Assets {
     public static Texture play, settings, high_score, about, back, title, door_unlocked, door_locked,
-                            door_opened, floor_concrete, floor_wood, floor_ground, hero;
+                            door_opened, hero;
     public static TextureRegion[] ladders = new TextureRegion[6];
-    public static TextureAtlas ladder_atlas, key_atlas;
+    public static TextureRegion[] floors = new TextureRegion[9];
+
+    public static TextureAtlas ladder_atlas, key_atlas, floor_atlas;
 
     public static Animation key_anim;
 
@@ -25,13 +28,12 @@ public class Assets {
         door_unlocked = new Texture("unlocked_door.png");
         door_locked = new Texture("locked_door.png");
         door_opened = new Texture("door_opened.png");
-        floor_concrete = new Texture("concrete_floor.png");
-        floor_wood = new Texture("wood_floor.png");
-        floor_ground = new Texture("ground_floor.png");
+
         hero = new Texture("hero.png");
 
         ladder_atlas = new TextureAtlas("ladder_sheet.atlas");
         key_atlas = new TextureAtlas("key_sheet.atlas");
+        floor_atlas = new TextureAtlas("floor_sheet.atlas");
 
         ladders[0] = new TextureRegion(ladder_atlas.findRegion("ladder_small_small"));
         ladders[1] = new TextureRegion(ladder_atlas.findRegion("ladder_small"));
@@ -39,6 +41,16 @@ public class Assets {
         ladders[3] = new TextureRegion(ladder_atlas.findRegion("ladder_mediam"));
         ladders[4] = new TextureRegion(ladder_atlas.findRegion("ladder_large_large"));
         ladders[5] = new TextureRegion(ladder_atlas.findRegion("ladder_large"));
+
+        floors[0] = new TextureRegion(floor_atlas.findRegion("floor_concrete_small"));
+        floors[1] = new TextureRegion(floor_atlas.findRegion("floor_concrete_medium"));
+        floors[2] = new TextureRegion(floor_atlas.findRegion("floor_concrete_long"));
+        floors[3] = new TextureRegion(floor_atlas.findRegion("floor_wood_small"));
+        floors[4] = new TextureRegion(floor_atlas.findRegion("floor_wood_medium"));
+        floors[5] = new TextureRegion(floor_atlas.findRegion("floor_wood_long"));
+        floors[6] = new TextureRegion(floor_atlas.findRegion("floor_ground_small"));
+        floors[7] = new TextureRegion(floor_atlas.findRegion("floor_ground_medium"));
+        floors[8] = new TextureRegion(floor_atlas.findRegion("floor_ground_long"));
 
         key_anim = new Animation(.1f, new TextureRegion(key_atlas.findRegion("0001")),
                 new TextureRegion(key_atlas.findRegion("0002")),
