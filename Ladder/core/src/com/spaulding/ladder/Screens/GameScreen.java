@@ -1,10 +1,7 @@
 package com.spaulding.ladder.Screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
-import com.spaulding.ladder.InputController;
-import com.spaulding.ladder.Levels.LevelController;
 import com.spaulding.ladder.Levels.Level1;
+import com.spaulding.ladder.Levels.LevelController;
 import com.spaulding.ladder.Main;
 
 /**
@@ -45,9 +42,7 @@ public class GameScreen extends LadderScreen {
     public void update(){
         switch (state) {
             case GAME_STATE_PLAY:
-                determined_level.draw();
-                determined_level.update();
-                determined_level.checkCollisions();
+                determined_level.render();
                 inputUpdater();
                 break;
             case GAME_STATE_PAUSE:
@@ -64,24 +59,6 @@ public class GameScreen extends LadderScreen {
     }
 
     private void inputUpdater(){
-        Gdx.input.setInputProcessor(new InputController() {
-            @Override
-            public boolean keyDown(int keycode){
-                switch (keycode) {
-                    case Keys.ESCAPE:
-                        state = GameState.GAME_STATE_QUIT;
-                        break;
-                    case Keys.A:
-                        break;
-                    case Keys.D:
-                        break;
-                    case Keys.S:
-                        break;
-                    case Keys.W:
-                        break;
-                }
-                return true;
-            }
-        });
+
     }
 }
