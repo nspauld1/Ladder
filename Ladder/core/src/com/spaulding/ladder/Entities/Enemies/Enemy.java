@@ -1,17 +1,27 @@
 package com.spaulding.ladder.Entities.Enemies;
 
+import com.spaulding.ladder.Entities.BodyType;
+import com.spaulding.ladder.Entities.Entity;
+import com.spaulding.ladder.Utils.Constants;
+
 /**
- * Created by Nathan Spaulding on 5/19/2016.
+ * Created by jared on 6/24/2016.
  */
-public interface Enemy {
-    public String enemyName(String eName);
-    public int enemyHealth(int eHealth);
-    public int enemyDamage(int eDamage);
-    public boolean hasWeapon(boolean eWeapon);
+public class Enemy extends Entity {
+    public static final float WIDTH = 50, HEIGHT = 100;
 
-    //Walking pattern wont be int but for now
-    public int walkingPattern(int pattern);
+    private static final BodyType body_type = BodyType.DYNAMIC;
 
-    public int enemyLocation(int eLoc);
+    public float state_time;
 
+    public Enemy (float x, float y) {
+        super (x, y, WIDTH, HEIGHT, body_type, false,
+                Constants.BIT_PLAYER, Constants.BIT_BLOCKERS,
+                "enemy");
+        state_time = 0;
+    }
+
+    public void update(float delta) {
+        state_time += delta;
+    }
 }

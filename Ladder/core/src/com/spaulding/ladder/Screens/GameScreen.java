@@ -11,7 +11,7 @@ public class GameScreen extends LadderScreen {
     Main game;
     LevelController determined_level;
 
-    public enum GameState {GAME_STATE_PLAY, GAME_STATE_PAUSE, GAME_STATE_WIN, GAME_STATE_LOOSE,
+    public enum GameState {GAME_STATE_PLAY, GAME_STATE_PAUSE, GAME_STATE_WIN, GAME_STATE_LOSE,
                             GAME_STATE_QUIT}
 
     public static GameState state;
@@ -43,9 +43,9 @@ public class GameScreen extends LadderScreen {
         switch (state) {
             case GAME_STATE_PLAY:
                 determined_level.render();
-                inputUpdater();
                 break;
             case GAME_STATE_PAUSE:
+                game.setScreen(new PauseScreen(game, this));
                 break;
             case GAME_STATE_QUIT:
                 game.setScreen(new MenuScreen(game));
@@ -53,12 +53,8 @@ public class GameScreen extends LadderScreen {
             case GAME_STATE_WIN:
                 game.setScreen(new WinScreen(game));
                 break;
-            case GAME_STATE_LOOSE:
+            case GAME_STATE_LOSE:
                 break;
         }
-    }
-
-    private void inputUpdater(){
-
     }
 }

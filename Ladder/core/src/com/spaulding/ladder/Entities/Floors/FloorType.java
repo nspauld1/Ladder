@@ -1,4 +1,4 @@
-package com.spaulding.ladder.Entities;
+package com.spaulding.ladder.Entities.Floors;
 
 /**
  * Created by jared on 6/7/2016.

@@ -8,6 +8,9 @@ import com.badlogic.gdx.math.Vector3;
 import com.spaulding.ladder.Utils.Assets;
 import com.spaulding.ladder.Main;
 
+import static com.spaulding.ladder.Main.WIDTH;
+import static com.spaulding.ladder.Main.HEIGHT;
+
 /**
  * Created by jared on 5/18/2016.
  */
@@ -20,7 +23,6 @@ public class MenuScreen extends LadderScreen {
 
     private final float PLAY_WIDTH = 100, SETTINGS_WIDTH = 200, HIGH_SCORE_WIDTH = 250,
                         ABOUT_WIDTH = 150, TITLE_WIDTH = 600;
-    private final float WIDTH = 640, HEIGHT = 900;
 
     public MenuScreen(Main game){
         super(game);
@@ -29,7 +31,6 @@ public class MenuScreen extends LadderScreen {
         touchpoint = new Vector3();
         gui_cam = new OrthographicCamera(WIDTH, HEIGHT);
         gui_cam.position.set(WIDTH / 2, HEIGHT / 2, 0);
-        System.out.print(gui_cam.position);
         play_bounds = new Rectangle((WIDTH / 2) - (PLAY_WIDTH / 2), HEIGHT - 300, PLAY_WIDTH, 50);
         settings_bounds = new Rectangle((WIDTH / 2) - (SETTINGS_WIDTH / 2), HEIGHT - 400, SETTINGS_WIDTH, 50);
         high_score_bounds = new Rectangle((WIDTH / 2) - (HIGH_SCORE_WIDTH / 2), HEIGHT - 500, HIGH_SCORE_WIDTH, 50);

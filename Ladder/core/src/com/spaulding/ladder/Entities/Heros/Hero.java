@@ -1,6 +1,8 @@
-package com.spaulding.ladder.Entities;
+package com.spaulding.ladder.Entities.Heros;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.spaulding.ladder.Entities.BodyType;
+import com.spaulding.ladder.Entities.Entity;
 import com.spaulding.ladder.Utils.Assets;
 import com.spaulding.ladder.Utils.Constants;
 

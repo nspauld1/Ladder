@@ -10,7 +10,8 @@ import com.spaulding.ladder.Animation;
  */
 public class Assets {
     public static Texture play, settings, high_score, about, back, title, door_unlocked, door_locked,
-                            door_opened, hero;
+                            door_opened, hero,
+                            arrow_right, arrow_left, arrow_up, arrow_down;
     public static TextureRegion[] ladders = new TextureRegion[6];
     public static TextureRegion[] floors = new TextureRegion[9];
 
@@ -30,6 +31,11 @@ public class Assets {
         door_opened = new Texture("door_opened.png");
 
         hero = new Texture("hero.png");
+
+        arrow_right = new Texture("arrow_right.png");
+        arrow_left = new Texture("arrow_left.png");
+        arrow_up = new Texture("arrow_up.png");
+        arrow_down = new Texture("arrow_down.png");
 
         ladder_atlas = new TextureAtlas("ladder_sheet.atlas");
         key_atlas = new TextureAtlas("key_sheet.atlas");

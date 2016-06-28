@@ -1,7 +1,6 @@
-package com.spaulding.ladder.Entities.Room;
+package com.spaulding.ladder.Entities.Doors;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.spaulding.ladder.Utils.Assets;
 import com.spaulding.ladder.Entities.BodyType;
 import com.spaulding.ladder.Entities.Entity;
 import com.spaulding.ladder.Utils.Constants;
@@ -14,30 +13,22 @@ public class Door extends Entity {
     public static final float DOOR_WIDTH = 90, DOOR_HEIGHT = 180;
     private static final BodyType type = BodyType.KINEMATIC;
 
-    public enum DoorType {LOCKED, UNLOCKED, OPENED}
     public DoorType dType;
 
     public float state_time;
 
     public Door(float x, float y, DoorType dType){
         super(x, y, DOOR_WIDTH, DOOR_HEIGHT, type, false,
-                Constants.BIT_SENSORS, Constants.BIT_BLOCKERS,
+                Constants.BIT_SENSORS, ((short) (Constants.BIT_BLOCKERS | Constants.BIT_PLAYER)),
                 "door");
 
         this.dType = dType;
-        switch (dType) {
-            case UNLOCKED:
-                sprite = new Sprite(Assets.door_unlocked);
-                break;
-            case LOCKED:
-                sprite = new Sprite(Assets.door_locked);
-                break;
-            case OPENED:
-                sprite = new Sprite(Assets.door_opened);
-                break;
-        }
-        sprite.setSize(DOOR_WIDTH / PPM, DOOR_HEIGHT / PPM);
+
         state_time = 1;
+    }
+
+    public void defineSprite(Sprite sprite) {
+        sprite.setSize(DOOR_WIDTH / PPM, DOOR_HEIGHT / PPM);
     }
 
     public void update(float delta){

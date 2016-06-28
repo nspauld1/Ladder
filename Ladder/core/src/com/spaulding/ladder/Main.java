@@ -6,6 +6,7 @@ import com.spaulding.ladder.Screens.MenuScreen;
 
 public class Main extends Game {
 	public SpriteBatch batcher;
+	public static final float WIDTH = 640, HEIGHT = 900;
 
 	@Override
 	public void create() {

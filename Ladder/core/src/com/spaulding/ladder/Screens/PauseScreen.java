@@ -1,5 +1,7 @@
 package com.spaulding.ladder.Screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.spaulding.ladder.Main;
 
 /**
@@ -7,10 +9,12 @@ import com.spaulding.ladder.Main;
  */
 public class PauseScreen extends LadderScreen {
     Main game;
+    GameScreen gameScreen;
 
-    public PauseScreen(Main game){
+    public PauseScreen(Main game, GameScreen gameScreen){
         super(game);
         this.game = game;
+        this.gameScreen = gameScreen;
     }
 
     public void render(float delta){
@@ -19,7 +23,10 @@ public class PauseScreen extends LadderScreen {
     }
 
     public  void update(){
-
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)){
+            game.setScreen(gameScreen);
+            GameScreen.state = GameScreen.GameState.GAME_STATE_PLAY;
+        }
     }
 
     public void draw(){

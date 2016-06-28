@@ -3,6 +3,7 @@ package com.spaulding.ladder.Entities;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.spaulding.ladder.Levels.LevelController;
@@ -19,6 +20,7 @@ public class Entity {
     public Sprite sprite;
     private FixtureDef fixtureDef;
     private BodyDef def;
+    public Fixture fixture;
 
     public Entity(float x, float y, float width, float height, BodyType type,
                   boolean canRotate, short cBits, short mBits, String user_date) {
@@ -62,8 +64,16 @@ public class Entity {
         if (user_data == "ladder" ) {
             fixtureDef.isSensor = true;
         }
+        if (user_data == "door") {
+            fixtureDef.isSensor = true;
+        }
+        if (user_data == "item") {
+            fixtureDef.isSensor = true;
+        }
 
         pBody.createFixture(fixtureDef).setUserData(this);
+
+        fixture = pBody.createFixture(fixtureDef);
 
         return pBody;
     }
